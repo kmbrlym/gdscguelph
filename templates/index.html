@@ -1,52 +1,75 @@
 {% extends "navbar.html" %}
 
 {% block content %}
-<div style="float: left; width: 50%;">
-    <img src="static/imageHome.png" alt="Image Home" style="width: 100%; height: auto;">
+<div id="page-container" style="transition: opacity 0.5s; opacity: 1;">
+    <div style="float: left; width: 50%;">
+        <img src="static/imageHome.png" alt="Image Home" style="width: 100%; height: auto;">
+    </div>
+    <div style="float: right; width: 50%;">
+        <h1 class="display-4" style="background: linear-gradient(to right, rgb(0, 0, 255), rgb(213, 57, 122)); font-size: 110px; -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold; margin-bottom: 20px;">Auxilium</h1>
+        <div class="typewriter-container" style="height: 50px; padding: 0px; border-collapse: collapse; margin: 0px;"> 
+            <p id="typewriter-text" style="font-size: 28px; padding: 0px; border-collapse: collapse; margin: 0px; font-weight: 500;"></p>
+        </div>
+        <div style="text-align: center; margin-left: -20%; margin-top: 4%"> <!-- Adjusted margin-left to move the button to the left -->
+            <button id="get-started-button" class="get-started-btn" style="background-color: #0000ff; color: white; border: none; border-radius: 20px; padding: 10px 20px; font-size: 18px; cursor: pointer;">Get Started</button>
+        </div>
+    </div>
 </div>
-<div style="float: right; width: 50%;">
-    <!-- Your landing page content goes here -->
-    <h1 class="display-4" style="background: linear-gradient(to right, rgb(0, 0, 255), rgb(213, 57, 122)); font-size: 110px; -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold; margin-bottom: 20px;">Auxilium</h1>
-    <div class="typewriter-container" style="height: 50px; padding: 0px; border-collapse: collapse; margin: 0px;"> 
-      <p id="typewriter-text" style="font-size: 28px; padding: 0px; border-collapse: collapse; margin: 0px; font-weight: 500;"></p>
-  </div>
-</div>
+
+<style>
+    .get-started-btn {
+        transition: background-color 0.3s ease;
+    }
+    .get-started-btn:hover {
+        background-color: #6666ff; /* Adjust the shade color as needed */
+    }
+</style>
 
 <script>
-  const sentences = ["Empower learning.", "Pitch Perch-fect."];
-  const typewriterText = document.getElementById("typewriter-text");
+    const sentences = ["Cut down on wasted minutes.", "Real-time evaluation."," Happy teachers, happy students."];
+    const typewriterText = document.getElementById("typewriter-text");
+    const pageContainer = document.getElementById("page-container");
+    const getStartedButton = document.getElementById("get-started-button");
 
-  let sentenceIndex = 0;
-  let charIndex = 0;
+    let sentenceIndex = 0;
+    let charIndex = 0;
 
-  function type() {
-      if (sentenceIndex < sentences.length) {
-          if (charIndex < sentences[sentenceIndex].length) {
-              typewriterText.innerHTML += sentences[sentenceIndex].charAt(charIndex);
-              charIndex++;
-              setTimeout(type, 100);
-          } else {
-              // Move to the next sentence after 2 seconds
-              setTimeout(erase, 2000);
-          }
-      }
-  }
+    function type() {
+        if (sentenceIndex < sentences.length) {
+            if (charIndex < sentences[sentenceIndex].length) {
+                typewriterText.innerHTML += sentences[sentenceIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(erase, 1000);
+            }
+        }
+    }
 
-  function erase() {
-      if (charIndex > 0) {
-          typewriterText.innerHTML = sentences[sentenceIndex].substring(0, charIndex - 1);
-          charIndex--;
-          setTimeout(erase, 50);
-      } else {
-          sentenceIndex++;
-          if (sentenceIndex >= sentences.length) {
-              sentenceIndex = 0; // Restart the loop
-          }
-          setTimeout(type, 500);
-      }
-  }
-    
-  // Start the typewriter effect
-  type();
+    function erase() {
+        if (charIndex > 0) {
+            typewriterText.innerHTML = sentences[sentenceIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(erase, 50);
+        } else {
+            sentenceIndex++;
+            if (sentenceIndex >= sentences.length) {
+                sentenceIndex = 0; // Restart the loop
+            }
+            setTimeout(type, 500);
+        }
+    }
+
+    // Start the typewriter effect
+    type();
+
+    getStartedButton.addEventListener("click", function() {
+        pageContainer.style.opacity = "0";
+        const preloadPage = new Image();
+        preloadPage.src = "/upload.html";
+        setTimeout(() => {
+            window.location.href = '/upload.html';
+        }, 500);
+    });
 </script>
 {% endblock %}
