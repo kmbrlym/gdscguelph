@@ -1,0 +1,74 @@
+.desktop {
+    border: 2px solid #333; /* Solid border */
+    border-radius: 20px; /* Increased border radius */
+    padding: 40px; /* Increased padding */
+    width: 500px; /* Increased width */
+    margin: 50px auto; /* Center the desktop */
+    height: 350px;
+    background-image: url('bgpurple.jpeg');
+}
+
+/* CSS styling for the container */
+.container {
+    display: flex; /* Set display to flex */
+    justify-content: space-between; /* Align items with space between */
+}
+
+/* CSS styling for the box */
+.box {
+    width: 400px; /* Increased width */
+    height: 275px; /* Increased height */
+    border: 3px dashed #ccc; /* Increased border width */
+    border-radius: 20px;
+    padding: 30px; /* Increased padding */
+    text-align: center;
+    font-size: 18px; /* Increased font size */
+    background-color: rgb(229, 226, 244);
+}
+
+/* Rest of your CSS styles */
+.file-input {
+    display: none;
+}
+
+.upload-button {
+    background-color: #4a87e9;
+    color: white;
+    padding: 15px 30px; /* Increased padding */
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px; /* Increased border radius */
+    cursor: pointer;
+    margin-top: 20px; /* Increased margin top */
+    display: inline-block;
+}
+
+.upload-button2 {
+    background-color: rgb(213, 57, 122);
+    color: white;
+    padding: 15px 30px; /* Increased padding */
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px; /* Increased border radius */
+    cursor: pointer;
+    margin-top: 20px; /* Increased margin top */
+    display: inline-block;
+}
+
+.upload-button:hover {
+    background-color: #04172c;
+}
+
+.upload-button2:hover {
+    background-color: rgb(129, 37, 37);
+}
+
+.file-names {
+    position: absolute; /* Set position to absolute */
+    top: 0; /* Align to the top */
+    right: 0; /* Align to the right */
+    color: #333; /* Text color */
+    font-size: 18px; /* Increased font size */
+}
