@@ -1,31 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "navbar.html" %}
 
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+{% block content %}
+<div style="float: left; width: 50%;">
+    <img src="static/imageHome.png" alt="Image Home" style="width: 100%; height: auto;">
+</div>
+<div style="float: right; width: 50%;">
+    <!-- Your landing page content goes here -->
+    <h1 class="display-4" style="background: linear-gradient(to right, rgb(0, 0, 255), rgb(213, 57, 122)); font-size: 110px; -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold; margin-bottom: 20px;">Auxilium</h1>
+    <div class="typewriter-container" style="height: 50px; padding: 0px; border-collapse: collapse; margin: 0px;"> 
+      <p id="typewriter-text" style="font-size: 28px; padding: 0px; border-collapse: collapse; margin: 0px; font-weight: 500;"></p>
+  </div>
+</div>
 
-    <script>
-      tinymce.init({
-        selector: '#mytextarea',
-        plugins: [
-          'a11ychecker','advlist','advcode','advtable','autolink','checklist','markdown',
-          'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-          'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
-        ],
-        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
-          'alignleft aligncenter alignright alignjustify | ' +
-          'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
-      });
-    </script>
+<script>
+  const sentences = ["Empower learning.", "Pitch Perch-fect."];
+  const typewriterText = document.getElementById("typewriter-text");
 
-  </head>
+  let sentenceIndex = 0;
+  let charIndex = 0;
 
-  <body>
-  <h1>TinyMCE Quick Start Guide</h1>
-    <form method="post">
-      <textarea id="mytextarea">Hello, World!</textarea>
-    </form>
-  </body>
-</html>
+  function type() {
+      if (sentenceIndex < sentences.length) {
+          if (charIndex < sentences[sentenceIndex].length) {
+              typewriterText.innerHTML += sentences[sentenceIndex].charAt(charIndex);
+              charIndex++;
+              setTimeout(type, 100);
+          } else {
+              // Move to the next sentence after 2 seconds
+              setTimeout(erase, 2000);
+          }
+      }
+  }
+
+  function erase() {
+      if (charIndex > 0) {
+          typewriterText.innerHTML = sentences[sentenceIndex].substring(0, charIndex - 1);
+          charIndex--;
+          setTimeout(erase, 50);
+      } else {
+          sentenceIndex++;
+          if (sentenceIndex >= sentences.length) {
+              sentenceIndex = 0; // Restart the loop
+          }
+          setTimeout(type, 500);
+      }
+  }
+    
+  // Start the typewriter effect
+  type();
+</script>
+{% endblock %}

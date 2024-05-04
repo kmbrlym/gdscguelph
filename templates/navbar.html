@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <style>
+        /* Navbar container styles */
+        .navbar-container {
+            text-align: center; /* Center the contents horizontally */
+        }
+        
+        /* Navbar styles */
+        .navbar {
+            background-color: white;
+            display: inline-block; /* Ensure navbar elements stay in line */
+        }
+
+        .navbar a {
+            display: inline-block;
+            color: black;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: border-bottom-color 0.3s ease-in-out;
+            border-bottom: 2px solid transparent; /* Initial transparent underline */
+        }
+
+        .navbar a:hover {
+            border-bottom-color: blue; /* Blue underline on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar-container">
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#getstarted">Get Started</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact Us</a>
+    </div>
+</div>
+
+<!-- Content placeholder -->
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
