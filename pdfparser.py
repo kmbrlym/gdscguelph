@@ -1,12 +1,17 @@
 from pdfquery import PDFQuery
 
-pdf = PDFQuery('static/example.pdf')
-pdf.load()
+pdfStudent = PDFQuery('static/examplestudentans.pdf')
+pdfStudent.load()
+text_elements1 = pdfStudent.pq('LTTextLineHorizontal')
+studentAnswer = [t.text for t in text_elements1]
 
-text_elements = pdf.pq('LTTextLineHorizontal')
+pdfMarkingScheme = PDFQuery('static/markingScheme.pdf')
+pdfMarkingScheme.load()
+text_elements2 = pdfMarkingScheme.pq('LTTextLineHorizontal')
+markingScheme = [t.text for t in text_elements2]
+
 
 # Extract the text from the elements
-text = [t.text for t in text_elements]
 
 #print(text)
 
