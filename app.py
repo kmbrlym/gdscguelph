@@ -1,15 +1,23 @@
 import os
 from flask import *
 from model import generate
+from dotenv import load_dotenv
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
 
 app = Flask(__name__)
 
+load_dotenv()
+sender_email = os.getenv('SENDER_EMAIL')
+sender_password = os.getenv('SENDER_PASSWORD')
 
-def save_file(file, folder):
-    if file:
-        filename = file.filename
-        file.save(os.path.join(app.static_folder, folder, filename))
-        return filename
+# def save_file(file, folder):
+#     if file:
+#         filename = file.filename
+#         file.save(os.path.join(app.static_folder, folder, filename))
+#         return filename
 
 @app.route("/")
 def index():
@@ -18,8 +26,6 @@ def index():
 # @app.route("/upload")
 # def upload():
 #     return render_template("upload.html")
-
-
 
 @app.route("/upload", methods=['GET', 'POST'])
 def upload_files():
