@@ -1,10 +1,9 @@
+import os
 from flask import *
-import os 
+from model import generate
 
 app = Flask(__name__)
 
-app_data = {'project_name': 'name'}
-app.secret_key = 'your_secret_key_here'
 
 def save_file(file, folder):
     if file:
@@ -14,7 +13,13 @@ def save_file(file, folder):
 
 @app.route("/")
 def index():
-    return render_template("index.html", app_data=app_data)
+    return render_template("index.html")
+
+# @app.route("/upload")
+# def upload():
+#     return render_template("upload.html")
+
+
 
 @app.route("/upload", methods=['GET', 'POST'])
 def upload_files():
@@ -24,20 +29,18 @@ def upload_files():
             file1 = request.files['file1']
             file2 = request.files['file2']
             # Save the files to the upload folder
-            file1.save(os.path.join('static', file1.filename))
-            file2.save(os.path.join('static', file2.filename))
+            file2.save(os.path.join('static', 'student-answer.pdf'))
+            file1.save(os.path.join('static', 'marking-scheme.pdf'))
             # Redirect to a success page
             print("Files uploaded successfully")
-            return redirect(url_for('upload_success'))
-    print("Reached GET method or file upload failed, redirecting to upload page")
-    return render_template("upload.html", app_data=app_data)  # Render upload page instead of redirecting
+            return redirect(url_for('feedback'))
+    else :
+        return render_template("upload.html")
+      # Render upload page instead of redirecting
 
-
-
-@app.route("/upload_success")
-def upload_success():
-    return "Files uploaded successfully!"
-
-
+@app.route("/feedback")
+def feedback():
+    return render_template("feedback.html", response=generate())
+    
 if __name__ == "__main__":
     app.run(debug=True)

@@ -11,13 +11,14 @@
 /* CSS styling for the container */
 .container {
     display: flex; /* Set display to flex */
+    gap:20px;
     justify-content: space-between; /* Align items with space between */
 }
 
 /* CSS styling for the box */
 .box {
-    width: 400px; /* Increased width */
-    height: 275px; /* Increased height */
+    width: 50%; /* Increased width */
+    height: 25%; /* Increased height */
     border: 3px dashed #ccc; /* Increased border width */
     border-radius: 20px;
     padding: 30px; /* Increased padding */
