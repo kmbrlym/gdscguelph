@@ -10,7 +10,6 @@
             padding: 40px; /* Increased padding */
             width: 500px; /* Increased width */
             margin: 50px auto; /* Center the desktop */
-            height: 350px;
             background-image: url('bgpurple.jpeg');
         }
         
@@ -22,13 +21,13 @@
         
         /* CSS styling for the box */
         .box {
-            width: 400px; /* Increased width */
-            height: 275px; /* Increased height */
+            width: 200px; /* Reduced width */
+            height: 175px; /* Reduced height */
             border: 3px dashed #ccc; /* Increased border width */
             border-radius: 20px;
-            padding: 30px; /* Increased padding */
+            padding: 15px; /* Reduced padding */
             text-align: center;
-            font-size: 18px; /* Increased font size */
+            font-size: 16px; /* Reduced font size */
             background-color: rgb(229, 226, 244);
         }
         
@@ -37,7 +36,24 @@
             display: none;
         }
         
-        .upload-button {
+        .choose-file-button {
+            background-color: #4a87e9;
+            color: white;
+            padding: 10px 20px; /* Adjusted padding */
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px; /* Adjusted border radius */
+            cursor: pointer;
+            margin-top: 20px; /* Increased margin top */
+            display: inline-block; /* Display as inline block */
+        }
+        
+        .choose-file-button:hover {
+            background-color: #04172c;
+        }
+        
+        .submit-button {
             background-color: #4a87e9;
             color: white;
             padding: 15px 30px; /* Increased padding */
@@ -47,56 +63,41 @@
             border-radius: 10px; /* Increased border radius */
             cursor: pointer;
             margin-top: 20px; /* Increased margin top */
-            display: inline-block;
+            display: block; /* Center the button */
+            margin: 20px auto; /* Center the button */
         }
         
-        .upload-button2 {
-            background-color: rgb(213, 57, 122);
-            color: white;
-            padding: 15px 30px; /* Increased padding */
-            text-align: center;
-            text-decoration: none;
-            border: none;
-            border-radius: 10px; /* Increased border radius */
-            cursor: pointer;
-            margin-top: 20px; /* Increased margin top */
-            display: inline-block;
-        }
-        
-        .upload-button:hover {
+        .submit-button:hover {
             background-color: #04172c;
-        }
-        
-        .upload-button2:hover {
-            background-color: rgb(129, 37, 37);
         }
         
         .file-names {
             color: #333; /* Text color */
-            font-size: 18px; /* Increased font size */
+            font-size: 14px; /* Reduced font size */
             margin-top: 10px; /* Added margin top */
         }
     </style>
 </head>
 <body>
-    <div class="desktop">
-        <div class="container">
-            <div class="box">
-                <p><span style="color: #4a87e9; font-weight: bold;">UPLOAD</span> <span style="color: black; font-weight: bold;">MARKING SCHEME</span></p>
-                <input type="file" id="file1" name="file1" class="file-input">
-                <label for="file1" class="upload-button">Choose File</label>
-                <button type="submit" class="upload-button">Upload</button>
-                <p class="file-names" id="file1-name"></p> <!-- Added file name paragraph -->
+    <form action="/upload" method="post" enctype="multipart/form-data"> <!-- Added form element -->
+        <div class="desktop">
+            <div class="container">
+                <div class="box">
+                    <p><span style="color: #4a87e9; font-weight: bold;">UPLOAD</span> <span style="color: black; font-weight: bold;">MARKING SCHEME</span></p>
+                    <input type="file" id="file1" name="file1" class="file-input">
+                    <button type="button" class="choose-file-button" onclick="document.getElementById('file1').click()">Choose File</button>
+                    <p class="file-names" id="file1-name"></p> <!-- Added file name paragraph -->
+                </div>
+                <div class="box">
+                    <p><span style="color: rgb(213, 57, 122); font-weight: bold;">UPLOAD</span> <span style="color: black; font-weight: bold;">STUDENT ANSWER</span></p>
+                    <input type="file" id="file2" name="file2" class="file-input">
+                    <button type="button" class="choose-file-button" onclick="document.getElementById('file2').click()">Choose File</button>
+                    <p class="file-names" id="file2-name"></p> <!-- Added file name paragraph -->
+                </div>
             </div>
-            <div class="box">
-                <p><span style="color: rgb(213, 57, 122); font-weight: bold;">UPLOAD</span> <span style="color: black; font-weight: bold;">STUDENT ANSWER</span></p>
-                <input type="file" id="file2" name="file2" class="file-input">
-                <label for="file2" class="upload-button2">Choose File</label>
-                <button type="submit" class="upload-button2">Upload</button>
-                <p class="file-names" id="file2-name"></p> <!-- Added file name paragraph -->
-            </div>
+            <button type="submit" class="submit-button">Submit</button> <!-- Added submit button -->
         </div>
-    </div>
+    </form>
 </body>
 </html>
 
