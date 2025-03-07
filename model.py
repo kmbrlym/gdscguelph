@@ -1,7 +1,7 @@
 import google.generativeai as genai
 from pdfparser import *
 
-API_KEY = 'AIzaSyBj3uMBj_Y3yoCyH0WVUA_ml6cDwoihads' #Add API key here
+API_KEY = '' #Add API key here
 genai.configure(api_key=API_KEY)
 
 def generate(): 
